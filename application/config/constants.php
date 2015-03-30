@@ -14,6 +14,14 @@
 |
 */
 
+
+/*
+ * Google API Key
+ */
+define("GOOGLE_API_KEY", "AIzaSyDCplWQyMtfeLPAjJDQqa8X356LKjQKWFs"); // Place your Google API Key
+
+
+
 define('PRODUCTION_MODE',1);
 define('DEVELOPMENT_MODE',2);
 define('PROJECT_MODE',DEVELOPMENT_MODE);
@@ -96,6 +104,20 @@ define('NOTIFICATION_NOT_VIEWED_STATUS',2);
 define('gINVALID',-1);
 define('VAT','12.36');
 define('COMMISION_PERCENTAGE','10');
+
+
+define('TD_LOG_LOCATION','0');
+define('TD_LOG_LOCATION_AND_TRIP_DETAILS','1');
+define('TD_NO_NEW_TRIP', '2');
+define('TD_NEW_INSTANT_TRIP', '3');
+define('TD_NEW_FUTURE_TRIP', '5');
+define('TD_CANCEL_TRIP', '7');
+define('TD_UPDATE_TRIP', '11');
+define('TD_COMMON_MSGS', '13');
+define('TD_PAYMENT_MSGS', '17');
+define('TD_RECCURENT_TRIPS', '19');
+define('TD_TRIP_ACCEPTED', '23');
+
 
 
 

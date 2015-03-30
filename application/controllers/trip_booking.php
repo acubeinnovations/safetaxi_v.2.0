@@ -6,6 +6,7 @@ class Trip_booking extends CI_Controller {
 		$this->load->model("trip_booking_model");
 		$this->load->model("tarrif_model");
 		$this->load->model("user_model");
+		$this->load->model("notification_model");
 		$this->load->model("driver_model");
 		$this->load->model("customers_model");
 		$this->load->helper('my_helper');
@@ -102,6 +103,17 @@ class Trip_booking extends CI_Controller {
 						$notification_data['trip_id']=$trip_id;
 						$trip_update=TRUE;
 						$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+						$notificationid=$this->notification_model->setNotifications($notification_data,$trip_update);
+					
+						//SEND TRIP CANCELLED NOTIFICATION FROM HERE
+
+						$response['td']=TD_CANCEL_TRIP;
+						$response['tid']=$trip_id;
+						$this->GCM->send_notification($app_key, $response);
+
+						$data=array('notification_status_id'=>NOTIFICATION_STATUS_VIEWED);
+						$this->notifications_model->updateNotifications($data,$notificationid);
+
 						if($trip_type_id==INSTANT_TRIP){
 								$driver_data['driver_status_id']=DRIVER_STATUS_ACTIVE;
 								$this->trip_booking_model->changeDriverstatus($driver_id,$driver_data);
@@ -148,6 +160,52 @@ class Trip_booking extends CI_Controller {
 						$drivers=false;
 					}
 					if($drivers!=false){
+						$condition=array('id'=>$id);
+						$trips=$this->trip_booking_model->getDetails($condition);
+			
+							
+							$tripdatetime							=$trips['pick_up_date'].' '.$trips['pick_up_time'];
+							$trip_type_id=$this->checkFutureOrInstantTrip($tripdatetime);
+							$dataArray=array('trip_type_id'=>$trip_type_id);
+
+							$res=$this->trip_booking_model->updateTrip($dataArray,$newtrips['trip_id']);
+
+							if(isset($trips['trip_from_landmark']) && $trips['trip_to_landmark']!=''){
+							$from=$trips['trip_from'].','.$trips['trip_from_landmark'];
+							}else{
+							$from=$trips['trip_from'];
+							}
+							if($trips['local_trip']=='f'){
+								if(isset($trips['trip_to_landmark']) && $trips['trip_to_landmark']!=''){
+								$to=$trips['trip_to'].','.$trips['trip_to_landmark'];
+								}else{
+								$to=$trips['trip_to'];
+								}
+							}else if($trips['local_trip']=='t'){
+								$to=$trips['trip_to'];
+							}
+							
+							$dates=explode('-',$trips['pick_up_date']);
+							$time=explode(':',$trips['pick_up_time']);
+							$unixtime=mktime($time[0],$time[1],0,$dates[1],$dates[2],$dates[0])*1000;
+		
+
+							$km=$trips['distance_in_km_from_web'];
+							$rtn=$trips['round_trip'];
+							if($trip_type_id==INSTANT_TRIP){
+							$response['td']=TD_NEW_INSTANT_TRIP;
+
+							$triptype='nct';
+
+							}else if($trip_type_id==FUTURE_TRIP){
+							
+							$response['td']=TD_NEW_FUTURE_TRIP;
+							
+							$triptype='nft';
+					
+							}	
+								
+
 						for($i=0;$i<count($drivers);$i++){
 							$app_key=$drivers[$i]['app_key'];
 							$notification_data['notification_type_id']=NOTIFICATION_TYPE_NEW_TRIP;
@@ -157,7 +215,15 @@ class Trip_booking extends CI_Controller {
 							$notification_data['trip_id']=$id;
 							$trip_update=FALSE;
 							if($app_key!=''){
-								$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+								$notificationid=$$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+								//SEND TRIP NEW NOTIFICATION FROM HERE
+								
+								$response[$triptype]=array('fr'=>$from,'nid'=>$notificationid,'sec'=>$unixtime,'tid'=>$trips['id'],'to'=>$to,'km'=>$km,'rtn'=>$rtn);
+								$this->GCM->send_notification($app_key, $response);
+						
+								$data=array('notification_status_id'=>NOTIFICATION_STATUS_NOTIFIED);
+								$this->notifications_model->updateNotifications($data,$notificationid);
+
 							}
 						}
 
@@ -268,10 +334,22 @@ class Trip_booking extends CI_Controller {
 							$notification_data['app_key']=$app_key;
 							$notification_data['trip_id']=$data['id'];
 							$trip_update=TRUE;
-							$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+
+							$notificationid=$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+							//SEND TRIP CANCEL NOTIFICATION FROM HERE
+
 							$conditon =array('id'=>$data['id']);
 							$cancelledtrips=$this->trip_booking_model->getDetails($conditon ='',$orderby='');
 							
+							$response['td']=TD_CANCEL_TRIP;
+							$response['tid']=$data['id'];
+							$this->GCM->send_notification($app_key, $response);
+
+							$data=array('notification_status_id'=>NOTIFICATION_STATUS_VIEWED);
+							$this->notifications_model->updateNotifications($data,$notificationid);
+
+
+
 							$tripdatetime							= $cancelledtrips[0]->pick_up_date.' '.$cancelledtrips[0]->pick_up_time;;
 							$canecellled_trip_type_id				= $this->checkFutureOrInstantTrip($tripdatetime);
 							if($canecellled_trip_type_id==INSTANT_TRIP){
@@ -338,6 +416,22 @@ class Trip_booking extends CI_Controller {
 							$notification_data['trip_id']=$data['id'];
 							$trip_update=FALSE;
 							$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+							//SEND TRIP UPDATE NOTIFICATION FROM HERE
+							$conditon =array('id'=>$data['id']);
+							$trips=$this->trip_booking_model->getDetails($conditon);	
+								
+								$dates=explode('-',$trips['pick_up_date']);
+								$time=explode(':',$trips['pick_up_time']);
+								$unixtime=mktime($time[0],$time[1],0,$dates[1],$dates[2],$dates[0])*1000;
+								$trips_updated[0]=array('fr'=>$trips['trip_from'],'sec'=>$unixtime,'tid'=>$trips['id'],'to'=>$trips['trip_to']);
+								$response['upt']=$trips_updated;
+
+								$response['td']=TD_UPDATE_TRIP;
+								$this->GCM->send_notification($app_key, $response);
+			
+								$data=array('notification_status_id'=>NOTIFICATION_STATUS_VIEWED);
+								$this->notifications_model->updateNotifications($data,$notificationid);
+
 							$condition=array('app_key'=>$app_key);
 							$trip_driver=$this->driver_model->getDetails($condition);
 							$message='Hi Customer, Your Trip Id: '.$data['id'].' has been Updated.Pick up Date '.$dbdata['pick_up_date'].'.Pickup time: '.$dbdata['pick_up_time'].'.Location : '.$dbdata['trip_from'].'-'.$dbdata['trip_to'].'. Driver: '.$trip_driver[0]->name.', '.$trip_driver[0]->mobile.'.';
@@ -377,6 +471,54 @@ class Trip_booking extends CI_Controller {
 					}else{
 							$drivers=false;
 					}
+					$id=$res;
+					$condition=array('id'=>$id);
+						$trips=$this->trip_booking_model->getDetails($condition);
+			
+							
+							$tripdatetime							=$trips['pick_up_date'].' '.$trips['pick_up_time'];
+							$trip_type_id=$this->checkFutureOrInstantTrip($tripdatetime);
+							$dataArray=array('trip_type_id'=>$trip_type_id);
+
+							$res=$this->trip_booking_model->updateTrip($dataArray,$newtrips['trip_id']);
+
+							if(isset($trips['trip_from_landmark']) && $trips['trip_to_landmark']!=''){
+							$from=$trips['trip_from'].','.$trips['trip_from_landmark'];
+							}else{
+							$from=$trips['trip_from'];
+							}
+							if($trips['local_trip']=='f'){
+								if(isset($trips['trip_to_landmark']) && $trips['trip_to_landmark']!=''){
+								$to=$trips['trip_to'].','.$trips['trip_to_landmark'];
+								}else{
+								$to=$trips['trip_to'];
+								}
+							}else if($trips['local_trip']=='t'){
+								$to=$trips['trip_to'];
+							}
+							
+							$dates=explode('-',$trips['pick_up_date']);
+							$time=explode(':',$trips['pick_up_time']);
+							$unixtime=mktime($time[0],$time[1],0,$dates[1],$dates[2],$dates[0])*1000;
+		
+
+							$km=$trips['distance_in_km_from_web'];
+							$rtn=$trips['round_trip'];
+							if($trip_type_id==INSTANT_TRIP){
+							$response['td']=TD_NEW_INSTANT_TRIP;
+
+							$triptype='nct';
+
+							}else if($trip_type_id==FUTURE_TRIP){
+							
+							$response['td']=TD_NEW_FUTURE_TRIP;
+							
+							$triptype='nft';
+					
+							}	
+
+
+
 					if($drivers!=false){
 						for($i=0;$i<count($drivers);$i++){
 							$app_key=$drivers[$i]['app_key'];
@@ -386,7 +528,14 @@ class Trip_booking extends CI_Controller {
 							$notification_data['app_key']=$app_key;
 							$notification_data['trip_id']=$res;
 							$trip_update=FALSE;	
-							$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+							$notificationid=$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+							//NEED TO SEND TRIP NEW NOTIFICATION FROM HERE
+							$response[$triptype]=array('fr'=>$from,'nid'=>$notificationid,'sec'=>$unixtime,'tid'=>$trips['id'],'to'=>$to,'km'=>$km,'rtn'=>$rtn);
+							$this->GCM->send_notification($app_key, $response);
+						
+								$data=array('notification_status_id'=>NOTIFICATION_STATUS_NOTIFIED);
+								$this->notifications_model->updateNotifications($data,$notificationid);
+
 						}
 					}else{
 						$this->session->set_userdata(array('dbError'=>'No Vehicles Available in this Radius..!!'));
@@ -493,11 +642,21 @@ function saveReccurentTrip(){
 									$notification_data['trip_id']=$res;
 									$trip_update=FALSE;
 									$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+									//NEED TO SEND TRIP RECURRENT NOTIFICATION FROM HERE
 									if($dbdata['trip_type_id']==INSTANT_TRIP){
 											$driver_data['driver_status_id']=DRIVER_STATUS_ACTIVE;
 											$this->trip_booking_model->changeDriverstatus($driver_id,$driver_data);
 									}
 									}
+									$response['td']=TD_RECCURENT_TRIPS;
+								
+									$reccurenttrips=	$this->notifications_model->reccurenttrips($app_key);
+	
+									$response['rct']=$reccurenttrips['trips'];
+									$response['cn']=$reccurenttrips['customer']['cn'];
+									$response['cm']=$reccurenttrips['customer']['cm'];
+									
+									$this->GCM->send_notification($app_key, $response);
 
 								}
 						}
@@ -539,7 +698,19 @@ function saveReccurentTrip(){
 									$notification_data['app_key']=$app_key;
 									$notification_data['trip_id']=$res;
 									$trip_update=FALSE;
-									$this->trip_booking_model->setNotifications($notification_data,$trip_update);
+									$this->trip_booking_model->setNotifications($notification_data,$trip_update);	
+									//SEND TRIP RECCURENT NOTIFICATION FROM HERE
+									$response['td']=TD_RECCURENT_TRIPS;
+								
+									$reccurenttrips=	$this->notifications_model->reccurenttrips($app_key);
+	
+									$response['rct']=$reccurenttrips['trips'];
+									$response['cn']=$reccurenttrips['customer']['cn'];
+									$response['cm']=$reccurenttrips['customer']['cm'];
+									
+									$this->GCM->send_notification($app_key, $response);
+
+									
 									if($dbdata['trip_type_id']==INSTANT_TRIP){
 											$driver_data['driver_status_id']=DRIVER_STATUS_ACTIVE;
 											$this->trip_booking_model->changeDriverstatus($driver_id,$driver_data);
@@ -808,7 +979,7 @@ function saveReccurentTrip(){
 	}
 
 	public function SendTripCancellation($id,$customer){
-		$message='Hi Customer,Trip ID:'.$id.' had been cancelled.Thank You for choosing Connect N cabs.Good Day..!!';
+		$message='Hi Customer,Trip ID:'.$id.' had been cancelled.Thank You for choosing Safe Taxi.Good Day..!!';
 
 	$this->sms->sendSms($customer['mob'],$message);
 	if($customer['email']!=''){

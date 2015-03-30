@@ -7,6 +7,7 @@ class Driver extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->helper('my_helper');
 		$this->load->model('driver_payment_model');
+		$this->load->model("notification_model");
 		no_cache();
 
 		}
@@ -255,6 +256,17 @@ class Driver extends CI_Controller {
 			$data['notification_view_status_id']=NOTIFICATION_NOT_VIEWED_STATUS;
 			$this->driver_model->sendNotification($data,$drivers);
 			redirect(base_url().'front-desk/sendNotifications');
+
+
+			$response['td']=TD_COMMON_MSGS;
+			$response['cmsg']=$data['message'];
+		
+			
+			for($driver_index=0;$driver_index<count($drivers);$driver_index++){
+					$app_key=$drivers[$driver_index];
+					$this->GCM->send_notification($app_key, $response);
+				}
+
 			}
 
 		}

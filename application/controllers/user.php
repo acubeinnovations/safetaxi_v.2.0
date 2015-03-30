@@ -1497,7 +1497,7 @@ public function profile() {
 	public function sendNotifications(){
 	if($this->session_check()==true) {
 			if($this->mysession->get('post')!=''){
-				$data=$this->mysession->get('post');print_r($data);
+				$data=$this->mysession->get('post');//print_r($data);
 				$this->mysession->delete('post');
 			}else{
 				$data['driver']='';
