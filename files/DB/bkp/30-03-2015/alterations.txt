@@ -1,0 +1,3 @@
+ALTER TABLE `trips` ADD `local_trip` CHAR( 1 ) NOT NULL AFTER `round_trip` ;
+
+ALTER TABLE `trips` CHANGE `trip_to` `trip_to` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ;

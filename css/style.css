@@ -1,0 +1,871 @@
+iframe{
+border:none;
+overflow:auto;
+}
+a{
+
+text-decoration: none;
+}
+.container-wrap{
+width:100%;
+height:auto;
+background:#303123;
+display:inline-block;
+}
+.container{
+width:1024px;
+margin:0 auto;
+}
+.logo{
+width:150px;
+float:left;
+padding:60px 60px 60px 60px;
+}
+
+.logo_img{
+
+
+}
+.nav-menu{
+width:874px;
+float:left;
+
+}
+.bg-light-black{
+background-color: #303123 !important;
+height:250px;
+}
+.cc_menu{
+list-style:none;
+float:right;
+
+}
+.cc_menu > li{
+float:left;
+margin:0 10px;
+
+}
+.cc_menu > li > a{
+color:#ffffff;
+}
+.footer{
+width:100%;
+display:block;
+background:#333;
+color:#fff;
+text-align:right;
+
+}
+.footer-content{
+
+}
+/*admin template*/
+#body{
+width: 95%;
+margin: auto;
+}
+.profile-body{
+width:70%;
+margin:0 auto;
+}
+.new-org-body{
+width:70%;
+margin:0 auto;
+}
+.change-password-body{
+width:30%;
+margin:0 auto;
+}
+.success-message{
+margin:20px 0 20px 0;
+}
+.body-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    
+}
+.body-border-Driver-View {
+    border: 1px groove #ddd !important;
+    padding: 2.2em 4.4em 4.4em 4.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    
+}
+.body-head {
+    width:auto; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+	margin:10px;
+	font-size:28px;
+	/*background:#F9F9F9*/
+
+}
+.page-outer{
+	width:95%;
+	margin:0 auto;
+}
+#captcha_div > .captcha{
+width:40% !important;
+float:left;
+}
+.captcha_id{
+float:left;
+}
+.pagination > li > a{
+float:none;
+}
+.list-org-table tr > td{
+border-top:none !important;
+}
+.tbl-settings{
+width:100%;
+
+}
+
+.settings-body{
+width:100%;
+margin:0 30px;
+}
+.settings-add{
+color:#00A65A;
+margin-top: 20px;
+}
+.tarrif-add{
+color:#00A65A;
+}
+.settings-edit{
+color:#00C0EF;
+margin-top: 20px;
+}
+.tarrif-edit{
+color:#00C0EF;
+
+}
+.tarrif_master_body{
+width:95%;
+margin: auto;
+
+}
+.settings-delete{
+color:#F56954;
+margin-top: 20px;
+}
+.tarrif-delete{
+color:#F56954;
+
+}
+.settings-add > .fa-plus-circle{
+font-size: 20px;
+cursor:pointer;
+}
+
+.settings-edit > .fa-edit{
+font-size: 20px;
+cursor:pointer;
+}
+
+.settings-delete > .fa-trash-o{
+font-size: 20px;
+cursor:pointer;
+}
+.hide-me{
+display:none;
+}
+.trip-booking-body{
+width:100%;
+
+}
+.first-column-trip-booking{
+width:79%;
+float:left;
+margin:3px 10px;
+}
+.second-column-trip-booking{
+margin:3px 10px 10px 1%;
+width:15%;
+float:left;
+}
+.div-with-50-percent-width-with-margin-10{
+float:left;
+width:43%;
+margin:20px;
+}
+.width-60-percent-with-margin-10{
+float:left;
+width:56%;
+margin:10px;
+}
+.margin-left-15-px{
+margin-left:15px;
+}
+.width-30-percent-with-margin-left-20{
+float:left;
+width:30%;
+margin:10px 0 10px 5px;
+}
+.width-30-percent-with-margin-left-20-Driver-View{
+float:left;
+width:35%;
+margin:40px 0 46px 115px;
+}
+.row-source-50-percent-width-with-margin-8{
+width:43%;
+margin:8px;
+float:left;
+}
+.row-source-100-percent-width-with-margin-8{
+width:90%;
+margin:8px;
+float:left;
+}
+.col-1-textbox-with-50-percent-width-and-float-left{
+margin-right:13px;
+width:47%;
+float:left;
+}
+
+.col-2-textbox-with-50-percent-width-and-float-left-for-guest{
+width: 47%;
+float: right;
+margin-top: 0px;
+}
+.col-2-textbox-with-50-percent-width-and-float-left{
+width: 47%;
+float: right;
+margin-top: 0px;
+}
+.div-with-90-percent-width-and-marigin-5{
+margin:5px;
+width:100%;
+float:left;
+}
+.width-96-percent-and-margin-8{
+margin:8px;
+width:90%;
+}
+#via{
+width:3%;
+
+}
+.toggle-via{
+display:none;
+}
+.group-toggle{
+display:none;
+}
+.radio-checkbox-vehicle-group{
+width:100%;
+margin:5px;
+}
+.radio-checkbox-vehicle-group > tr > td{
+width:50%;
+}
+.recurrent-yes-container{
+margin:-20px 0 0 0;
+
+}
+.float-right{
+float:right;
+}
+.margin-top-less-10{
+margin-top:-10px;
+}
+.margin-top-less-12{
+margin-top:-12px !important;
+}
+.margin-top-less-20{
+margin-top:-20px;
+}
+.margin-top-less-40{
+margin-top:-40px;
+}
+.margin-top-less-18{
+margin-top: -18px;
+}
+.margin-top-less-6{
+margin-top: -6px !important;;
+}
+.margin-top-less-15{
+margin-top: -15px;
+}
+
+.recurrent-container-continues,
+.recurrent-container-alternatives{
+display:none;
+margin:20px 0 0 0;
+}
+.no-border-top{
+border-top:none;
+}
+.add-customer,
+.clear-customer{
+margin:15px 0 0 15px;
+}
+.clear-guest{
+display:none;
+}
+.passenger-basic-info > .form-group > label[for=email_error],
+.passenger-basic-info > .form-group > label[for=name_error],
+.passenger-basic-info > .form-group > label[for=mobile_error]{
+color:red;
+margin-top:-10px;
+}
+
+.passenger-basic-info > .form-group > label[for=mobile_error]{
+width:28%;
+}
+.width-50-percent{
+width:50%;
+}
+.width-50-percent-important{
+width:50% !important;
+}
+.width-50-percent-margin-auto{
+width:50%;
+margin:auto;
+}
+.wdith-30-percent{
+width:30%;
+}
+.recurrent-radio-container{
+margin:-19px 20px 0px;
+display:block;
+}
+.div-continues,
+.div-alternatives{
+
+float:left;
+}
+.width-80-percent-and-margin-8{
+width:80%;
+margin:8px;
+}
+.width-80-percent-and-margin-auto{
+width:90%;
+margin:auto;
+}
+.float-left{
+
+float:left;
+
+}
+
+.left-65{
+
+margin-left:65px;
+
+}
+.right-15{
+
+margin-right:15px;
+
+}
+
+.alternative-table{
+width:100%;
+}
+.width-80-percent{
+width:80%;
+}
+.margin-15{
+margin:15px;
+}
+.margin-8{
+margin:8px;
+}
+
+.guest-toggle{
+display:none;
+margin-top:5px;
+}
+
+.dropdown-menu-on-key-press{
+margin: -6px 0px 0px 10px !important;
+
+}
+.drop-down-places{
+
+z-index:2400;
+}
+#divGeneral{
+padding:105px 0 110px 80px;
+
+}
+#general{
+margin-right: 80px !important;
+height:80%;
+}
+#logo{
+height:200px !important;
+}
+.border-style{
+width:80% !important;
+}
+.border-style-Driver-view{
+width:100% !important;
+}
+.form-submit-reset-buttons-group{
+bottom:0px;
+}
+.tarrif_body{
+width:30%;
+margin-left:500px;
+margin-top:70px;
+
+}
+.driver-details-body{
+width:30%;
+margin-left:500px;
+margin-top:70px;
+
+}
+.delete{
+margin-bottom:23px;
+}
+.customer-type-container{
+margin:-42px 0px 10px 10px;
+
+}
+.rough-estimate-table{
+margin-top: 20px;
+
+}
+
+.notify-link{
+color:#333;
+
+}
+
+.no-right-padding{
+
+padding-right:0;
+}
+.notify{
+height:900px;
+overflow-y:auto;
+}
+
+.list-trip-table  tr > td{
+border-top:none !important;
+}
+.next1 ,.next2{
+margin:2px 95px -11px 473px;
+}
+.prev1, .prev2{
+margin:14px 65px -42px -34px;
+}
+.insurance{
+margin:50px 50px 51px 144px;
+}
+.trips-booking-div > .box > .overlay-container > .overlay, .box > .overlay-container > .loading-img {
+position:fixed !important;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+}
+
+.reccurent-lok >.box > .overlay-container > .overlay, .box > .overlay-container > .lok-img {
+position:absolute !important;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+}
+
+
+.trips-booking-div > .box {
+   
+    background:none; 
+	border:none;
+	box-shadow: 0px 0px 0px;
+	border-radius: 0px;
+}
+
+.reccurent-lok > .box {
+   
+    background:none; 
+	border:none;
+	box-shadow: 0px 0px 0px;
+	border-radius: 0px;
+}
+
+.trips-booking-div > .box > .box-body{
+padding:0;
+}
+.reccurent-lok > .box > .box-body{
+padding:0;
+}
+.box > .overlay-container > .overlay{
+    z-index: 1010;
+    background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.698);
+}
+
+.trips-booking-div > .box > .overlay-container > .loading-img {
+    z-index: 1020;
+    background: url('../img/ajax-loader1.gif') no-repeat scroll 50% 50% transparent;
+}
+
+.reccurent-lok > .box > .overlay-container > .lok-img {
+    z-index: 1020;
+	opacity:.4;
+    
+}
+.reccurent-lok > .box > .overlay-container > .lok-img:hover{
+	background: url('../img/img-lock.png') no-repeat scroll transparent;
+	background-size:contain;
+	background-position: center; 
+}
+
+.overlay-container{
+display:none;
+}
+.hide-me-temp{
+display:none;
+}
+
+
+.trips > .box > .overlay-container > .loading-img {
+    z-index: 1020;
+    background: #ccc;
+	opacity:.7;
+}
+
+.modal-body{
+ z-index: 1030;
+width:80%;
+margin:auto;
+top:-300px;
+background:#fff;
+}
+
+.border-2-px{
+border:1px solid #3C8DBC;
+
+}
+.box-shadow{
+box-shadow: 2px 2px 10px #3C8DBC;
+}
+
+.device-add{
+
+color: #00A65A;
+}
+
+.device-edit{
+    color: #00C0EF;
+}
+
+.device-delete{
+    color: #F56954;
+}
+
+.tab-content > .active {
+display:inline-block;
+width: 100%;
+}
+.trips > .box{
+background: none;
+box-shadow:none;
+}
+.font-size-13-px{
+
+font-size:13px;
+}
+.font-size-18-px{
+
+font-size:18px;
+font-weight:bold;
+}
+.cursor-pointer{
+cursor: pointer;
+}
+.margin-top-18-px{
+margin-top:18px;
+}
+.error-margin{
+margin: 0px 0px 6px 10px;
+}
+
+.msg{
+color:red;
+
+}
+.driver-list-div > table > tbody > tr > td{
+width:20%;
+}
+
+.table-with-20-percent-td > tbody > tr > td{
+width:20%;
+}
+.table-with-7-percent-td > tbody > tr > td{
+width:7.6%;
+}
+.customer-button-group{
+margin-top: -6px;
+
+}
+.guest-container{
+margin-left:150px;
+}
+.font-size-12-px{
+    font-size: 12px;
+}
+.mandatory{
+border:1px solid #F4543C;
+}
+.no-print{
+display:none;
+}
+.reg_num_style{
+padding-left:10%;
+}
+.clear-guest{
+margin-left: 10px;
+}
+.trips-redirect{
+margin-top: -30px;
+float: right;
+}
+.email-table{
+border:1px solid #333;
+}
+.td-width-50-percent{
+width:50%;
+}
+
+.bold{
+	font-weight:bold;
+}
+.excel{
+width:200px; 
+text-align:center;
+}
+.width-2-percent{
+
+width:2% !important;
+}
+.callout.callout-success {
+   
+	background-color: #DFF0D8;
+    border-color: #B0EDCD;
+}
+
+
+
+/* trips safe-taxi start*/
+
+.trip-booking-area{
+
+width:100%;
+min-height:600px;
+margin-left:25px;
+
+}
+.trip-booking-area-first-col{
+
+width:60%;
+float:left;
+min-height:600px;
+}
+
+.trip-booking{
+width:100%;
+
+min-height:200px;
+}
+
+.trip-booking-info{
+min-height:400px;
+width:100%;
+
+}
+
+.trip-booking-area-second-col{
+width:35%;
+min-height:600px;
+float:left;
+margin-left: 10px;
+}
+
+.trip-booking-notifications{
+min-height:600px;
+width:100%;
+
+}
+.width-100-percent{
+width:100%;
+margin-left:5px;
+margin-right:5px;
+padding: 5px;
+margin-bottom:5px;
+}
+
+.table-width-100-percent-td-width-25-percent{
+width:100%;
+
+}
+.table-width-100-percent-td-width-25-percent >  td{
+width:23%;
+margin:10px;
+}
+.margin-10-px{
+margin:10px;
+}
+
+.search-vehicles{
+
+margin-top: 10px;
+}
+.width-40-percent{
+	width:40% !important;
+}
+.width-20-percent{
+	width:20%;
+}
+.width-30-percent{
+width:30% !important;;
+}
+.height-27-px{
+height:27px;
+}
+
+.margin-top-less-1{
+
+margin-top:-1px;
+}
+.margin-top-10-px{
+margin-top: 10px;
+}
+label[for=name_error],label[for=mobile_error]{
+color: #F56954 !important;
+display:none;
+}
+.margin-left-10-px{
+	margin-left: 10px;
+}
+.margin-left-3-px{
+	margin-left: 3px;
+}
+.search-ico{
+line-height:2;
+}
+.no-padding{
+
+padding:0 !important;
+}
+
+.search-ico{
+width:145px;
+font-size:11px;
+}
+#map_canvas{
+    width: 100%;
+    height: 330px;
+}
+#track_map_canvas{
+    width: 100%;
+    height: 330px;
+}
+.list-notified-vehicles{
+	width: 100%;
+    height: 330px;
+	overflow-y:auto;
+}
+.ajax-notifications{
+min-height:618px;
+}
+.hdpi.pac-container:after{
+background:none;
+
+
+}
+.pac-container:after{
+content:"Powered By Acube";
+background:none;
+color:#F4543C;
+margin-bottom:5px;
+margin-right:5px;
+}
+
+.box-custom{
+box-shadow: 0px 0px 0px;
+background: none;
+
+}
+.no-line-height{
+
+line-height:0;
+}
+.width-90-percent{
+
+width:90%;
+}
+.position-absolute{
+position:absolute;
+}
+.height-300-px{
+height:350px;
+}
+.margin-left-15-px{
+margin-left:15px;
+}
+.margin-right-135-px{
+margin-right:135px;
+}
+.margin-right-90-px{
+margin-right:90px;
+}
+.margin-right-110-px{
+margin-right:110px;
+}
+#driver{
+width: 88%;
+margin-left: 12px;
+}
+/* trips safe-taxi end*/
+
+
+/* Print Driver Payments*/
+table.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+.tblgap{
+    margin-bottom: 3px;
+}
+
+/*Print Driver Payments*/
+
+
+
+/*driver notifications -start*/
+
+
+.driver-notifications{
+width: 95%;
+margin: 0px auto;
+
+}
+/*driver notifications -start*/
+.width-30-percent-with-margin-left-20-Driver-View .body-head{
+    padding: 0!important;
+}
