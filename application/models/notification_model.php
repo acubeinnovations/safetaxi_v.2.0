@@ -1,5 +1,5 @@
 <?php
-class notifications extends CI_Model {
+class Notification_model extends CI_Model {
 
 	public function tripNotifications($app_key){
 		

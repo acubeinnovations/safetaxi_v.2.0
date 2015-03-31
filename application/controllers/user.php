@@ -1526,6 +1526,9 @@ public function profile() {
 			//trip details
 		
 		
+
+			$data['app_key']=$this->makeUniqueRandomAppKey();
+			
 			//print_r($data['trips']);exit;
 			$data['title']='Driver Profile| '.PRODUCT_NAME;
 			$page='user-pages/addDrivers';
@@ -1564,6 +1567,29 @@ public function profile() {
 		return $data;
 	}
 	
+	public function makeUniqueRandomAppKey(){
+	
+			$random= "";
+
+			srand((double)microtime()*1000000);
+
+			$rdata = "12456789ABCDEFGHJKLMNPQRSTUVWXYZ123455345678";
+			$rdata .= "23456789ZYXWVUTSRQNMLKJHGFEDCBA98765432";
+
+
+			for($i = 0; $i < 10; $i++)
+			{
+			$random .= substr($rdata, (rand()%(strlen($rdata))), 1);
+			}
+			$condion=array('app_key'=>$random);
+			if(!$this->driver_model->isDriverExist($condion)){
+				return $random;
+			}else{
+				makeUniqueRandomAppKey();
+			}
+
+
+	}
 	
 	public function date_check($date){
 	if( strtotime($date) >= strtotime(date('Y-m-d')) ){

@@ -1,4 +1,5 @@
 <?php 
+/*
 class Crontripallocation extends CI_Controller {
 	
 	public function __construct()
@@ -44,7 +45,7 @@ class Crontripallocation extends CI_Controller {
 				if($j==0){
 					$min_amount = $notifications[$j]['amount'];
 					$driver_api = $notifications[$j]['app_key'];
-					$awarded_driver_array[0]=$notifications[$j]['app_key'];
+					$awarded_drhttp://jsfiddle.net/9zRHx/88/iver_array[0]=$notifications[$j]['app_key'];
 
 				}else{
 					$regret_driver_array[$k]=$notifications[$j]['app_key'];
@@ -119,4 +120,6 @@ class Crontripallocation extends CI_Controller {
 	return true;
 	}
 	}
+
+*/
 }

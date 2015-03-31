@@ -101,7 +101,7 @@ class Driver extends CI_Controller {
 
 				$this->session->set_userdata(array('dbSuccess'=>' Added Succesfully..!'));
 				$this->session->set_userdata(array('dbError'=>''));
-				redirect(base_url().'front-desk/driver');
+				redirect(base_url().'front-desk/driver-profile');
 			}
 		}
 		else{

@@ -33,7 +33,7 @@
 	$vehicle_registration_number='';
 	$device_imei='';
 	$device_sim_number='';
-	$app_key='';
+	//$app_key='';
 	$base_location='';
 	//$status_description='';
 	
@@ -204,8 +204,8 @@ $this->mysession->delete('post');
 
     <div class="form-group">
 	<?php echo form_label('App Key','usernamelabel'); ?>
-           <?php echo form_input(array('name'=>'app_key','class'=>'form-control','id'=>'app_key','placeholder'=>'App Key','value'=>$app_key)); ?>
-	<?php echo $this->form_functions->form_error_session('app_key', '<p class="text-red">', '</p>'); ?>
+           <?php echo form_input(array('name'=>'app_key','class'=>'form-control','id'=>'app_key','placeholder'=>'App Key','value'=>$app_key,'readonly'=>true)); ?>
+	
     </div>
 
     <div class="form-group">

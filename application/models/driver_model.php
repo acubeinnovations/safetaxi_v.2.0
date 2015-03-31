@@ -61,7 +61,17 @@ public function getDriverDetails($data){
 
 
 
+	function isDriverExist($condion=''){
+	$this->db->from('drivers');
+ 	$this->db->where($condion);
+  $results = $this->db->get()->result();
+	if(count($results)>0){
+		return true;
+	}else{
+		return false;
 
+	}
+	}
 
 
 
